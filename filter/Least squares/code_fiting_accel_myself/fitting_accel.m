@@ -15,7 +15,7 @@ Accel_ScaleFactor = 1/417.7;
 accel_offset = [-0.023695834;-0.0131036071;-0.0022972305];
 accel_scale = [1.00172770;1.00286853;0.987629831];
 
-accel_mat = importdata("3_compressed.txt");
+accel_mat = importdata("2_compressed.txt");
 
 Accel_X = accel_mat.data(:,2);
 Accel_Y = accel_mat.data(:,3);
@@ -38,14 +38,14 @@ t = 1:N;
 
 figure(1);
 subplot(3,1,1);
-plot(t,Accel_X_g,t,Accel_X_g_cali);grid on;;legend('Accel_X_g','Accel_X_g_cali');
+plot(t,Accel_X_g,t,Accel_X_g_cali);grid on;;legend('Accel\_X\_g','Accel\_X\_g\_cali');
 subplot(3,1,2);
-plot(t,Accel_Y_g,t,Accel_Y_g_cali);grid on;;
+plot(t,Accel_Y_g,t,Accel_Y_g_cali);grid on;;legend('Accel\_X\_g','Accel\_X\_g\_cali');
 subplot(3,1,3);
-plot(t,Accel_Z_g,t,Accel_Z_g_cali);grid on;;
+plot(t,Accel_Z_g,t,Accel_Z_g_cali);grid on;;legend('Accel\_X\_g','Accel\_X\_g\_cali');
 
 figure(2);
-plot(t,Accel_Z_g_mod, t, Accel_Z_g_cali_mod);legend('mod_a','mod_a_b');grid on;
+plot(t,Accel_Z_g_mod, t, Accel_Z_g_cali_mod);legend('mod_a','mod_a_b');legend('Accel\_X\_g','Accel\_X\_g\_cali');grid on;
 
 
 fprintf("accel x mean value :%f \n", mean(Accel_X)*Accel_ScaleFactor/earth_G);

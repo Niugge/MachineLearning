@@ -24,6 +24,7 @@
 %                   2、状态观测器
 %                   3、线性扩张状态观测器
 %                   4、TD微分跟踪控制器
+%                   5、PLL锁相环观测器
 %%==================================================================================%%
 clc;
 clear;
@@ -46,12 +47,16 @@ omg = 10;
 beta1 = 2*omg;
 beta2 = omg^2;
 
+bandwidth = 10;
+Kp = 2*bandwidth;
+Ki = 0.25 * Kp * Kp;
+
 w = 1;
 
 alpha = 0.08;
 noise = alpha*(rand(1,N)-0.5);
 
-M=4;
+M=3;
 
 for i=1:N-1
    
@@ -79,7 +84,17 @@ for i=1:N-1
         
         x1(i+1) = x1(i) + h*x2(i);
         x2(i+1) = x2(i) + h*fhan(x1(i)-vn(i), x2(i), r, h0);
+    elseif M==5
+        % 预测
+        x1(i+1) = x1(i) + h*x2(i);
         
+        % delta
+        e = vn(i) - x1(i+1);
+        
+        % feedback
+        x1(i+1) = x1(i+1) + Kp*e*h;
+        x2(i+1) = x2(i) + Ki*e*h;
+    
     end
     
     y(i)=x2(i);

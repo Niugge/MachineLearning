@@ -37,15 +37,18 @@ end
 data_raw_mod    = sqrt(data_raw(1,:).*data_raw(1,:) + data_raw(2,:).*data_raw(2,:) + data_raw(3,:).*data_raw(3,:));
 data_filter_mod = sqrt(data_filter(1,:).*data_filter(1,:) + data_filter(2,:).*data_filter(2,:) + data_filter(3,:).*data_filter(3,:));
 
-figure(3);
+figure;
 subplot(3,1,1);
-plot(t,data_raw(1,:),t,data_filter(1,:));grid on;;legend('Accel_X_g','Accel_X_g_cali');
+plot(t,data_raw(1,:),t,data_filter(1,:));grid on;;legend('Accel\_X\_g','Accel\_X\_g\_cali');
 subplot(3,1,2);
-plot(t,data_raw(2,:),t,data_filter(2,:));grid on;;
+plot(t,data_raw(2,:),t,data_filter(2,:));grid on;;legend('Accel\_X\_g','Accel\_X\_g\_cali');
 subplot(3,1,3);
-plot(t,data_raw(3,:),t,data_filter(3,:));grid on;;
+plot(t,data_raw(3,:),t,data_filter(3,:));grid on;;legend('Accel\_X\_g','Accel\_X\_g\_cali');
 
-figure(4);
-plot(t, data_raw_mod, t, data_filter_mod);grid on;
+figure;
+plot(t, data_raw_mod, t, data_filter_mod);grid on;legend('Accel\_X\_g','Accel\_X\_g\_cali');
+
+%figure;
+%plot(t, data_filter(:,1), t, data_filter(:,2));grid on;
 
 end
